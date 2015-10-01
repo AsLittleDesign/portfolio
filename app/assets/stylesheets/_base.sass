@@ -1,8 +1,9 @@
-$body-background: #fff
+$body-background: #F7F7F7
 
 body
   margin: 0
   background-color: $body-background
+  font-family: Lato, monospace
 
 .hidden
   display: none
@@ -11,7 +12,33 @@ body
   height: 100vh
   width: 100%
 
-g
+.signature
+  // font-family: Monaco, Courier, monospace
+  font-weight: bold
+  width: 200px
+  height: 1em
+  position: absolute
+  right: calc(100% - 280px)
+  top: 0
+  bottom: 0
+  margin: auto
+
+.navigation
+  // font-family: Monaco, Courier, monospace
+  font-size: 0.8em
+  line-height: 2em
+  position: absolute
+  height: 6em
+  left: calc(100% - 300px)
+  top: 0
+  bottom: 0
+  margin: auto
+  list-style: none
+
+.circles-container
+  text-align: center
+
+path
   animation:
     name: rotate-circle
     iteration-count: infinite
@@ -22,7 +49,9 @@ circle
   cy: 50%
   x: 0
   y: 0
-  fill: white
+  fill: $body-background
+  stroke: $body-background
+  stroke-width: 5px
 
   &:nth-child(2n - 2)
     fill: $body-background

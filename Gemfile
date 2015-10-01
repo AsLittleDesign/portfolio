@@ -36,9 +36,6 @@ gem 'uglifier', '>= 1.3.0'
 # Use CoffeeScript for .coffee assets and views
 gem 'coffee-rails', '~> 4.1.0'
 
-# Hamlc for backbone templating
-gem "haml_coffee_assets", git: "https://github.com/netzpirat/haml_coffee_assets"
-
 # Use Backbone.js for a lightweight front-end MVC framework
 gem 'rails-backbone'
 

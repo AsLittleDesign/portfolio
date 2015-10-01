@@ -2,32 +2,15 @@
 %html
   %head
     %title Dave Scott McCarthy
+    %link(href='http://fonts.googleapis.com/css?family=Lato:400,300,700' rel='stylesheet' type='text/css')
     = stylesheet_link_tag    "application", media: 'all', 'data-turbolinks-track' => "true"
     = javascript_include_tag "application", 'data-turbolinks-track' => "true"
     = csrf_meta_tags
     %meta(name="viewport" content="width=device-width")
-  %head
+
   %body
-    .hidden(js-photographs)
+    .hidden(js-images)
       - images = Dir.glob("app/assets/images/photographs/*")
-      - images.each do |image|
-        -image.slice! "app/assets/images/"
-        %span= image_path image
-
-    .hidden(js-illustrations)
-      - images = Dir.glob("app/assets/images/illustrations/*")
-      - images.each do |image|
-        -image.slice! "app/assets/images/"
-        %span= image_path image
-
-    .hidden(js-graphics)
-      - images = Dir.glob("app/assets/images/graphics/*")
-      - images.each do |image|
-        -image.slice! "app/assets/images/"
-        %span= image_path image
-    
-    .hidden(js-interfaces)
-      - images = Dir.glob("app/assets/images/interfaces/*")
       - images.each do |image|
         -image.slice! "app/assets/images/"
         %span= image_path image
