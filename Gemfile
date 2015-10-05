@@ -36,23 +36,8 @@ gem 'uglifier', '>= 1.3.0'
 # Use CoffeeScript for .coffee assets and views
 gem 'coffee-rails', '~> 4.1.0'
 
-# Use Backbone.js for a lightweight front-end MVC framework
-gem 'rails-backbone'
-
-# Use Underscore
-gem 'underscore-rails'
-
 # Use jquery as the JavaScript library
 gem 'jquery-rails'
-
-# jQuery mobile to support mobile events, etc
-gem 'jquery_mobile_rails'
-
-# Fixes jQuery turbolinks
-gem 'jquery-turbolinks'
-
-# Turbolinks makes following links in your web application faster. Read more: https://github.com/rails/turbolinks
-gem 'turbolinks'
 
 # Build JSON APIs with ease. Read more: https://github.com/rails/jbuilder
 gem 'jbuilder', '~> 2.0'

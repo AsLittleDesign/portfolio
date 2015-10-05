@@ -1,6 +1,5 @@
 Rails.application.routes.draw do
-  get "application/base"
+  root 'site#index'
 
-  root :to => 'base#index'
-  get "/about" => 'base#about'
+  get "/about" => 'site#about'
 end

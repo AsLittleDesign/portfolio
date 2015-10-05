@@ -1,6 +1,6 @@
 .navigation(js-navigation)
-  =image_tag "mark.svg", class: "navigation--logo"
+  %a.navigation--logo(href="/")
+    =image_tag "mark.svg"
   
-  .navigation--links
-    %a(href="http://www.aslittledesign.com") Blog
-    %a(href="/about") Meet Dave
+  %a.navigation--link(href="/about") About Dave
+  %a.navigation--link(href="http://www.aslittledesign.com") Blog

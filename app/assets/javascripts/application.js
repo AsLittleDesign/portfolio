@@ -1,9 +1,5 @@
 //= require jquery2
 //= require jquery_ujs
-//= require jquery.mobile
 //= require_tree ./lib
-//= require turbolinks
-//= require hamlcoffee
-//= require underscore
 //= require_tree ./phase
 //= require_tree .

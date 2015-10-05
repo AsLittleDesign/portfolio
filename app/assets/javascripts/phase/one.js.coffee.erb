@@ -317,7 +317,7 @@ viewItem = (data) ->
       <div class='view-item--content container centered'>
         <img src='#{ data.imagePath }' class='view-item--image' />
         <h1>#{ data.title }</h1>
-        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quod excepturi ea accusamus voluptas praesentium. Animi cum dicta, adipisci debitis modi consequuntur officia cumque quis! Nostrum sapiente, blanditiis hic veniam id!</p>
+        <p>#{ data.description || '' }</p>
       </div>
       <span class='view-item--back' js-item-back>Back</span>"
 
@@ -347,5 +347,4 @@ viewItem = (data) ->
         d.r
 
 $ ->
-  $.mobile.loading().hide();
   renderBubbles()
