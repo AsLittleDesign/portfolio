@@ -1,0 +1,351 @@
+# Returns a random numbers between the
+# two numbers passed to the function
+# NOTE: Numbers passed should be between 0 and 100
+# TODO: Make this function work with any two numbers
+randomNumber = (min, max) ->
+  number = Math.random() * 100
+  
+  if (number < max) && (number > min)
+    return number
+    console.log number
+  else
+    randomNumber(min, max)
+
+collide = (node) ->
+  r = node.r + 16
+  nx1 = node.x - r
+  nx2 = node.x + r
+  ny1 = node.y - r
+  ny2 = node.y + r
+
+  return (quad, x1, y1, x2, y2) ->
+    if quad.point && quad.point != node
+      x = node.x - quad.point.x
+      y = node.y - quad.point.y
+      l = Math.sqrt(x * x + y * y)
+      r = node.r + quad.point.r
+      
+      if l < r
+        l = (l - r) / l * .5
+        node.x -= x *= l
+        node.y -= y *= l
+        quad.point.x += x
+        quad.point.y += y
+
+    return x1 > nx2 || x2 < nx1 || y1 > ny2 || y2 < ny1
+
+
+# Returns a function, that, as long as it continues to be invoked, will not
+# be triggered. The function will be called after it stops being called for
+# N milliseconds. If `immediate` is passed, trigger the function on the
+# leading edge, instead of the trailing.
+debounce = (func, wait, immediate) ->
+  timeout = undefined
+  return ->
+    context = this
+    args = arguments
+    later = ->
+      timeout = null
+      if !immediate
+        func.apply context, args
+
+    clearTimeout timeout
+    timeout = setTimeout later, wait
+    if immediate && !timeout
+      func.apply(context, args)
+
+createPatterns = (nodes, svg) ->
+  defs = svg.append "defs"
+  
+  for node in nodes
+    defs.append "pattern"
+      .attr
+        "patternUnits" : "objectBoundingBox"
+        "patternContentUnits" : "objectBoundingBox"
+        "width"        : "100%"
+        "height"       : "100%"
+        "id"           : node.id.toLowerCase()
+
+      .append "image"
+        .attr
+          "xlink:href" : node.thumbnailPath
+          "x"          : 0
+          "y"          : 0
+          "width"      : 1
+          "height"     : 1
+          "preserveAspectRatio" :"none"
+
+renderBubbles = ->
+  work = [
+      id: "recharge"
+      title: "Recharge App Marketing Page"
+      thumbnailPath: "<%= image_url 'thumbnails/recharge.jpg' %>"
+      imagePath: "<%= image_url 'work/recharge.jpg' %>"
+      color: "#d3d1ca"
+    ,
+      id: "jobs"
+      title: "Steve Jobs Portrait"
+      thumbnailPath: "<%= image_url 'thumbnails/jobs.jpg' %>"
+      imagePath: "<%= image_url 'work/jobs.jpg' %>"
+      color: "#a8a8aa"
+    ,
+      id: "faraway"
+      title: "Far Away"
+      thumbnailPath: "<%= image_url 'thumbnails/faraway.jpg' %>"
+      imagePath: "<%= image_url 'work/faraway.jpg' %>"
+      color: "#c2a071"
+    ,
+      id: "yoda"
+      title: "When nine hundred years old you reach, look as good you will not."
+      thumbnailPath: "<%= image_url 'thumbnails/yoda.jpg' %>"
+      imagePath: "<%= image_url 'work/yoda.jpg' %>"
+      color: "#e6e6e6"
+    ,
+      id: "watch"
+      title: "Moto 360 Watch Face"
+      thumbnailPath: "<%= image_url 'thumbnails/watch.png' %>"
+      imagePath: "<%= image_url 'work/watch.gif' %>"
+      color: "#373736"
+    ,
+      id: "bee"
+      title: "Work"
+      thumbnailPath: "<%= image_url 'thumbnails/bee.jpg' %>"
+      imagePath: "<%= image_url 'work/bee.jpg' %>"
+      color: "#aeae97"
+    ,
+      id: "cliff"
+      title: "El Capitan"
+      thumbnailPath: "<%= image_url 'thumbnails/cliff.jpg' %>"
+      imagePath: "<%= image_url 'work/cliff.jpg' %>"
+      color: "#868686"
+    ,
+      id: "dragonfly"
+      title: "Emerald Insect"
+      thumbnailPath: "<%= image_url 'thumbnails/dragonfly.jpg' %>"
+      imagePath: "<%= image_url 'work/dragonfly.jpg' %>"
+      color: "#89884a"
+    ,
+      id: "emily"
+      title: "Emily"
+      thumbnailPath: "<%= image_url 'thumbnails/emily.jpg' %>"
+      imagePath: "<%= image_url 'work/emily.jpg' %>"
+      color: "#4d341a"
+    ,
+      id: "eye"
+      title: "Window to the Soul"
+      thumbnailPath: "<%= image_url 'thumbnails/eye.jpg' %>"
+      imagePath: "<%= image_url 'work/eye.jpg' %>"
+      color: "#68331f"
+    ,
+      id: "incense"
+      title: "Smoke (no mirrors)"
+      thumbnailPath: "<%= image_url 'thumbnails/incense.jpg' %>"
+      imagePath: "<%= image_url 'work/incense.jpg' %>"
+      color: "#333333"
+    ,
+      id: "megan"
+      title: "Megan"
+      thumbnailPath: "<%= image_url 'thumbnails/megan.jpg' %>"
+      imagePath: "<%= image_url 'work/megan.jpg' %>"
+      color: "#d8d8d8"
+    ,
+      id: "snuff"
+      title: "Snuff"
+      thumbnailPath: "<%= image_url 'thumbnails/snuff.jpg' %>"
+      imagePath: "<%= image_url 'work/snuff.jpg' %>"
+      color: "#cccbc0"
+    ,
+      id: "tree"
+      title: "Solitude"
+      thumbnailPath: "<%= image_url 'thumbnails/tree.jpg' %>"
+      imagePath: "<%= image_url 'work/tree.jpg' %>"
+      color: "#747474"
+    ,
+      id: "alarm"
+      title: "Smart Alarm App Concept"
+      thumbnailPath: "<%= image_url 'thumbnails/alarm.jpg' %>"
+      imagePath: "<%= image_url 'work/alarm.jpg' %>"
+      color: "#8d8c89"
+    ,
+      id: "fistbump"
+      title: "Fist Bump App Concept"
+      thumbnailPath: "<%= image_url 'thumbnails/fistbump.jpg' %>"
+      imagePath: "<%= image_url 'work/fistbump.jpg' %>"
+      color: "#63b5e5"
+    ]
+
+  # Returns the window dimensions as an integer
+  height = $(window).height()
+  width = $(window).width()
+
+  svg = d3.select("[js-svg-append]").append "svg"
+    .attr
+      "version"   : "1.1"
+      "xmlns"     : "http://www.w3.org/2000/svg"
+      "xml:space" : "preserve"
+      "width"     : "100%"
+      "height"    : "100%"
+
+  work.forEach (d) ->
+    radius = randomNumber 50, 80
+    d.r = radius
+    d.ro = radius
+
+    d
+
+  createPatterns work, svg
+
+  force = d3.layout.force()
+    .nodes work
+    .size [width, height]
+    .friction 0.9
+    .charge -100
+    .chargeDistance [100]
+    .gravity 0.02
+    .theta 0.8
+    .alpha 0.1
+    .start()
+
+  node = svg.selectAll '.node'
+    .data work
+    .enter().append 'circle'
+      .attr 'class', 'node'
+      .attr "r", (d) ->
+        d.r
+      .attr "fill", (d) ->
+        "url(##{ d.id })"
+
+      .on "mouseover", (d) ->
+        d.r = d.r * 1.2
+        d3.select(this)
+          .transition()
+            .attr "r", d.r
+            .duration 500
+            .ease "elastic"
+
+      .on "mouseout", (d) ->
+        d.r = d.ro
+        d3.select(this)
+          .transition()
+            .attr "r", d.r
+            .duration 500
+            .ease "elastic"
+
+      .on "click", (d) ->
+        viewItem(d)
+
+        d3.selectAll('.node')
+          .transition()
+            .duration 200
+            .ease "linear"
+            .attr "r", 0
+
+  force.on 'tick', ->    
+    node.attr 'cx', (d) ->
+      d.x
+
+    node.attr 'cy', (d) ->
+      d.y
+
+    q = d3.geom.quadtree(work)
+    i = 0
+    n = work.length
+
+    while ++i < n
+      debounce q.visit( collide(work[i]) ), 10
+
+  $(window).resize ->
+    height = $(window).height()
+    width = $(window).width()
+
+    force.size [width, height]
+    debounce force.start(), 100
+
+  $(".svg-container")
+    .on "mousemove", ->
+      width = event.clientX * 2
+      height = event.clientY * 2
+
+      force
+        .size [width, height]
+        .gravity 0.005
+
+      debounce force.start(), 200
+    
+    .on "swipeleft", ->
+      width = width - 600
+
+      force
+        .size [width, height]
+        .gravity 0.005
+        .start()
+
+    .on "swiperight", ->
+      width = width + 600
+
+      force
+        .size [width, height]
+        .gravity 0.005
+        .start()
+
+getTextColor = (color) ->
+  if tinycolor.isReadable color, tinycolor(color).lighten(40)
+    tinycolor(color).lighten(40)
+
+  else if tinycolor.isReadable color, tinycolor(color).darken(50)
+    tinycolor(color).darken(40)
+
+  else
+    "rgba(255, 255, 255, 0.7)"
+
+getBackColor = (color) ->
+  if tinycolor.isReadable tinycolor(color).darken(20).saturate(10), tinycolor(color).lighten(40)
+    tinycolor(color).lighten(40)
+
+  else if tinycolor.isReadable tinycolor(color).darken(20).saturate(10), tinycolor(color).darken(50)
+    tinycolor(color).darken(50)
+
+  else
+    "rgba(255, 255, 255, 0.7)"
+
+viewItem = (data) ->
+  textColor = getTextColor data.color
+  backColor = getBackColor data.color
+
+  content = "
+    <div class='view-item--image-background' style='background-image: url(#{ data.imagePath })'></div>
+      <div class='view-item--content container centered'>
+        <img src='#{ data.imagePath }' class='view-item--image' />
+        <h1>#{ data.title }</h1>
+        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quod excepturi ea accusamus voluptas praesentium. Animi cum dicta, adipisci debitis modi consequuntur officia cumque quis! Nostrum sapiente, blanditiis hic veniam id!</p>
+      </div>
+      <span class='view-item--back' js-item-back>Back</span>"
+
+  $("[js-navigation]").attr "s-transparent", true
+  $("[js-view-item]")
+    .css
+      "pointer-events"   : "initial"
+      "background-color" : data.color
+      "color": textColor
+    .html content
+  
+  $("[js-item-back]").css "color", backColor
+  
+  setTimeout ->
+    $("[js-view-item]")
+      .css "opacity", 1
+  , 250
+
+  $("[js-item-back]").click ->
+    $("[js-navigation]").removeAttr "s-transparent"
+    $("[js-view-item]")
+      .css "pointer-events", "none"
+      .css "opacity", 0
+
+    d3.selectAll(".node")
+      .attr "r", (d) ->
+        d.r
+
+$ ->
+  $.mobile.loading().hide();
+  renderBubbles()

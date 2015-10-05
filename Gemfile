@@ -45,6 +45,9 @@ gem 'underscore-rails'
 # Use jquery as the JavaScript library
 gem 'jquery-rails'
 
+# jQuery mobile to support mobile events, etc
+gem 'jquery_mobile_rails'
+
 # Fixes jQuery turbolinks
 gem 'jquery-turbolinks'
 

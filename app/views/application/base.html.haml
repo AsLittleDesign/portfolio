@@ -9,8 +9,5 @@
     %meta(name="viewport" content="width=device-width")
 
   %body
-    .hidden(js-images)
-      - images = Dir.glob("app/assets/images/photographs/*")
-      - images.each do |image|
-        -image.slice! "app/assets/images/"
-        %span= image_path image
+    = render "partials/navigation"
+    = yield :content
