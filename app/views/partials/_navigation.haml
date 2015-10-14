@@ -1,6 +1,8 @@
 .navigation(js-navigation)
-  %a.navigation--logo(href="/")
-    =image_tag "mark.svg"
-  
-  %a.navigation--link(href="/about") About Dave
-  %a.navigation--link(href="http://www.aslittledesign.com") Blog
+  .navigation--duplicate-svg.svg-container(js-duplicate-svg)
+
+  .navigation--content
+    %a.navigation--logo(href="/" data-icon="logo")
+    
+    %a.navigation--link(href="/about") About Dave
+    %a.navigation--link(href="http://www.aslittledesign.com") Blog

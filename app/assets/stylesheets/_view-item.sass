@@ -38,9 +38,22 @@
     +transition(opacity 0.1s ease-in-out)
     position: absolute
     top: 1em
-    left: 1em
+    left: 0
     cursor: pointer
     text-shadow: 0 0 5px rgba(0,0,0,0.25)
+    padding: 0.5em 3em
+    background-image: linear-gradient(90deg, rgba(0,0,0,0.5), transparent)
+    color: white
 
     &:hover
       opacity: 0.8
+
+.hover-tooltip
+  position: absolute
+  top: 100px
+  left: 0
+  right: 0
+  text-align: center
+  background-color: rgba(255, 255, 255, 0.8)
+  line-height: 2em
+  font-size: 0.8em

@@ -1,5 +1,5 @@
 //= require jquery2
 //= require jquery_ujs
 //= require_tree ./lib
-//= require_tree ./phase
+//= require ./main
 //= require_tree .
