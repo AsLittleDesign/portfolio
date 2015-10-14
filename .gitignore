@@ -15,3 +15,6 @@
 /log/*
 !/log/.keep
 /tmp
+
+# Stupid stupid ds_store
+.DS_Store
