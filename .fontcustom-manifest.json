@@ -1,15 +1,35 @@
 {
   "checksum": {
-    "previous": "aaa7a6b525326349e42a7e636897f1920a672646ab497e668deb1e34c976eb96",
-    "current": "aaa7a6b525326349e42a7e636897f1920a672646ab497e668deb1e34c976eb96"
+    "previous": "e3fa2f01021546a69603d829cedfca6fd4c7acb62d7d5d067555f982fa9cbe49",
+    "current": "e3fa2f01021546a69603d829cedfca6fd4c7acb62d7d5d067555f982fa9cbe49"
   },
   "fonts": [
-    "app/assets/fonts/icons_aaa7a6b525326349e42a7e636897f192.ttf",
-    "app/assets/fonts/icons_aaa7a6b525326349e42a7e636897f192.svg",
-    "app/assets/fonts/icons_aaa7a6b525326349e42a7e636897f192.woff",
-    "app/assets/fonts/icons_aaa7a6b525326349e42a7e636897f192.eot"
+    "app/assets/fonts/icons_e3fa2f01021546a69603d829cedfca6f.ttf",
+    "app/assets/fonts/icons_e3fa2f01021546a69603d829cedfca6f.svg",
+    "app/assets/fonts/icons_e3fa2f01021546a69603d829cedfca6f.woff",
+    "app/assets/fonts/icons_e3fa2f01021546a69603d829cedfca6f.eot"
   ],
   "glyphs": {
+    "adobe": {
+      "codepoint": 61698,
+      "source": "app/assets/fonts/icons/adobe.svg"
+    },
+    "css": {
+      "codepoint": 61701,
+      "source": "app/assets/fonts/icons/css.svg"
+    },
+    "html": {
+      "codepoint": 61702,
+      "source": "app/assets/fonts/icons/html.svg"
+    },
+    "invision": {
+      "codepoint": 61700,
+      "source": "app/assets/fonts/icons/invision.svg"
+    },
+    "js": {
+      "codepoint": 61703,
+      "source": "app/assets/fonts/icons/js.svg"
+    },
     "logo": {
       "codepoint": 61697,
       "source": "app/assets/fonts/icons/logo.svg"
@@ -17,6 +37,14 @@
     "mark": {
       "codepoint": 61696,
       "source": "app/assets/fonts/icons/mark.svg"
+    },
+    "ruby": {
+      "codepoint": 61704,
+      "source": "app/assets/fonts/icons/ruby.svg"
+    },
+    "sketch": {
+      "codepoint": 61699,
+      "source": "app/assets/fonts/icons/sketch.svg"
     }
   },
   "options": {

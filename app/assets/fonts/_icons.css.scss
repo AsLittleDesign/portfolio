@@ -1,10 +1,10 @@
 @font-face {
   font-family: "icons";
-  src: url("icons_aaa7a6b525326349e42a7e636897f192.eot");
-  src: url("icons_aaa7a6b525326349e42a7e636897f192.eot?#iefix") format("embedded-opentype"),
-       url("icons_aaa7a6b525326349e42a7e636897f192.woff") format("woff"),
-       url("icons_aaa7a6b525326349e42a7e636897f192.ttf") format("truetype"),
-       url("icons_aaa7a6b525326349e42a7e636897f192.svg#icons") format("svg");
+  src: url("icons_e3fa2f01021546a69603d829cedfca6f.eot");
+  src: url("icons_e3fa2f01021546a69603d829cedfca6f.eot?#iefix") format("embedded-opentype"),
+       url("icons_e3fa2f01021546a69603d829cedfca6f.woff") format("woff"),
+       url("icons_e3fa2f01021546a69603d829cedfca6f.ttf") format("truetype"),
+       url("icons_e3fa2f01021546a69603d829cedfca6f.svg#icons") format("svg");
   font-weight: normal;
   font-style: normal;
 }
@@ -12,7 +12,7 @@
 @media screen and (-webkit-min-device-pixel-ratio:0) {
   @font-face {
     font-family: "icons";
-    src: url("icons_aaa7a6b525326349e42a7e636897f192.svg#icons") format("svg");
+    src: url("icons_e3fa2f01021546a69603d829cedfca6f.svg#icons") format("svg");
   }
 }
 
@@ -31,5 +31,12 @@
   font-smoothing: antialiased;
 }
 
+[data-icon="adobe"]:before { content: "\f102"; }
+[data-icon="css"]:before { content: "\f105"; }
+[data-icon="html"]:before { content: "\f106"; }
+[data-icon="invision"]:before { content: "\f104"; }
+[data-icon="js"]:before { content: "\f107"; }
 [data-icon="logo"]:before { content: "\f101"; }
 [data-icon="mark"]:before { content: "\f100"; }
+[data-icon="ruby"]:before { content: "\f108"; }
+[data-icon="sketch"]:before { content: "\f103"; }

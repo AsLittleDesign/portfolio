@@ -1,0 +1,119 @@
+= content_for :head do
+  = stylesheet_link_tag "resume", media: 'all'
+  = javascript_include_tag "resume"
+
+%section.flex-container
+  .center-column
+    %h1 Dave Scott McCarthy
+    %h3 Full-stack Designer
+
+    %a(href="mailto:davesmccarthy@gmail.com") davesmccarthy@gmail.com
+    %br
+    %a(href="http://www.davesmccarthy.com/") davesmccarthy.com
+    %br
+    %a(href="tel:9167920297") 916.792.0297
+
+%section.centered
+  .toggles
+    .toggles--toggle(js-toggle-resume="about" s-active) About
+    .toggles--toggle(js-toggle-resume="skills") Skills
+    .toggles--toggle(js-toggle-resume="experience") Experience
+
+%section.flex-container.resume-section(js-resume="about" s-active)
+  .center-column
+    %h1.centered "Who are you?"
+    %p I'm someone who is simply passionate about making great, usable, and memorable experiences. As long as I can remember, I've been drawing, playing instruments, taking pictures... I even started learning Photoshop before I entered high school. With an eclectic artistic background, interface design was instantly intuitive, just like the interfaces I strive to create.
+
+    %h1.centered "What do you do, exactly?"
+    %p I actually can do quite a lot of things! I call myself a 'Full-stack Designer', meaning I am what I need to be, exactly when I need to be it. I love being able to jump in and help anywhere that I'm needed, and my goal has always been to be able to work on projects from ideation to creation.
+
+    %h1.centered "What are you looking for in your next role?"
+    %p I'm looking for a new adventure alongside great colleagues and friends! What I  care about most is that I am constantly learning from, as well as educating those around me.
+
+%section.flex-container.resume-section(js-resume="skills")
+  .center-column
+    %h1 Design Tools
+    .flex-container.skillset--skill-container
+      %span.skillset--skill-logo(m-adobe data-icon="adobe")
+      %span.skillset--skill Photoshop
+      %span.skillset--skill Lightroom
+      %span.skillset--skill Illustrator
+      %span.skillset--skill InDesign
+      %span.skillset--skill After Effects
+
+    .flex-container.skillset--skill-container
+      %span.skillset--skill-logo(m-sketch data-icon="sketch")
+      %span.skillset--skill Sketch 3
+
+    .flex-container.skillset--skill-container
+      %span.skillset--skill-logo(m-invision data-icon="invision")
+      %span.skillset--skill InVision
+
+    .divider
+    %h1 Programming Languages
+    .flex-container.skillset--skill-container
+      %span.skillset--skill-logo(m-html data-icon="html")
+      %span.skillset--skill HTML
+      %span.skillset--skill HAML
+      %span.skillset--skill ERB
+      %span.skillset--skill JADE
+    
+    .flex-container.skillset--skill-container
+      %span.skillset--skill-logo(m-css data-icon="css")
+      %span.skillset--skill CSS
+      %span.skillset--skill SASS
+      %span.skillset--skill SCSS
+    
+    .flex-container.skillset--skill-container
+      %span.skillset--skill-logo(m-js data-icon="js")
+      %span.skillset--skill JavaScript
+      %span.skillset--skill CoffeeScript
+
+    .flex-container.skillset--skill-container
+      %span.skillset--skill-logo(m-ruby data-icon="ruby")
+      %span.skillset--skill  Ruby
+
+    .divider
+    %h1 Frameworks, Libraries, etc.
+    %span.skillset--skill Compass
+    %span.skillset--skill Bootstrap
+    %span.skillset--skill FontCustom
+    %span.skillset--skill BackboneJS
+    %span.skillset--skill AngularJS
+    %span.skillset--skill NodeJS
+    %span.skillset--skill Ruby on Rails
+    %span.skillset--skill Git
+    %span.skillset--skill Bash
+    %span.skillset--skill Grunt
+    %span.skillset--skill Bower
+
+%section.flex-container.resume-section(js-resume="experience")
+  .center-column
+    %h1 Poll Everywhere
+    %h3 Visual Designer - August 2014 to Present
+    %p At Poll Everywhere, I do user experience, and user interface design, working with many products across various platforms.
+
+    %p In addition, l do feature development utilizing Haml, Sass, CoffeeScript, and Ruby. I frequently work with our visualizations, mobile apps, dashboard, and responsive voting pages.
+
+    %p Aside from interface design and development, I design and implement custom branded voting pages for our enterprise clients, including Fortune 500 companies such as Google, Dell, IBM, and HP. Additionally, I will Document styles, design print, and digital collateral, and interview potential design candidates.
+
+    %p Most recently, I was tasked with creating both a brand, and a marketing site for a new product. The goal for the website was for the marketing team to create, and edit content. I utilized ERB as a way to template SVG images, and Haml to template the pages.
+
+    .divider
+    %h1 Recharge Labs
+    %h3 Front-end Developer, User Experience Designer - July to September 2015
+    %p At Recharge, I was brought on to help complete the front-end of their Ionic mobile app. I refactored the legacy front-end code to utilize modular methodologies, and then built, and styled the mobile app, all while netting less code than I started with.
+
+    %p Following the mobile app work, I was asked to continue my contract to design and build their web dashboard. The deliverable was a completely functional front-end ready for the developer to connect to the api endpoint.
+
+    %p Afterwards, my contract was again extended to create a landing page for recharge.co, their marketing website.
+
+    .divider
+    %h1 Nyentek
+    %h3 Web Designer - March to August 2014
+    %p At Nyentek, my primary responsibility was to design, and often implement websites, and interfaces for our clients. I helped maintain consistent and meaningful communication with our clients, while ensuring that I was building exactly what they needed.
+
+    .divider
+    %h1 UserBallot
+    %h3 Co-Founder - March to August 2014
+    %p UserBallot was a startup based on polling your website's visitors with quick to answer, yes-or-no questions. As a co-founder, I primarily focused on the visual, and interaction design of the product. I also developed some of the app front-end, and some light PHP backend work.

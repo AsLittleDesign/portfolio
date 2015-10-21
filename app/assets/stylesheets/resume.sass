@@ -1,0 +1,170 @@
+@import "base/colors"
+
+// Base
+body
+  padding-top: 80px
+  overflow-y: auto
+
+.flex-container
+  display: flex
+
+.resume-section
+  display: none
+
+  &[s-active]
+    display: flex
+
+.toggles
+  border: 1px solid $blue
+  display: flex
+  border-radius: 3px
+  width: 400px
+  margin: auto
+
+  &--toggle
+    transition: all 0.2s ease-in-out
+    padding: 0.5rem 2.5rem
+    font-weight: bold
+    font-size: 0.8em
+    color: $blue
+    cursor: pointer
+    width: 200px
+
+    &[s-active]
+      background-color: $blue
+      color: white
+
+      &:hover
+        background-color: lighten($blue, 2%)
+        color: mix($blue, white, 5%)
+
+    &:hover
+      background-color: mix($blue, white, 5%)
+      color: lighten($blue, 2%)
+
+.skillset
+  &--list
+    width: 50%
+
+  &--body
+    width: 50%
+
+  &--scale
+    height: 5px
+    position: relative
+    margin:
+      bottom: 1rem
+      top: 1rem
+    background:
+      color: $gray
+      image: linear-gradient(90deg, $gray, $blue)
+
+  &--scale-label
+    position: absolute
+    top: 10px
+    color: black
+    font-weight: bold
+    font-size: 0.8em
+
+    &:first-child
+      left: 0
+
+    &:last-child
+      right: 0
+
+  &--skill
+    line-height: 2rem
+
+    + .skillset--skill
+      margin-left: 2rem
+
+  &--skill-container
+    align-items: center
+
+    + .skillset--skill-container
+      margin-top: 2rem
+
+  &--skill-logo
+    font-size: 3rem
+    margin-right: 2rem
+
+    &[m-adobe]
+      color: red
+
+    &[m-sketch]
+      color: #FCBD35
+
+    &[m-invision]
+      color: #FF3366
+
+    &[m-html]
+      color: #E7603D
+
+    &[m-css]
+      color: #1F75B4
+
+    &[m-js]
+      color: #d6ba32
+
+    &[m-ruby]
+      color: #d1162b
+
+@media (max-width: 560px)
+  .toggles
+    width: 100%
+
+    &--toggle
+      padding: 0.5rem 1.5rem
+
+  h1
+    line-height: 1.2em
+
+  .skillset
+    &--skill-container
+      display: block
+
+    &--skill-logo
+      display: inline-block
+      width: 100%
+
+    &--skill
+      margin-right: 1em
+      white-space: nowrap
+      
+      + .skillset--skill  
+        margin-left: 0
+
+.divider
+  margin:
+    top: 2rem
+    bottom: 2rem
+  height: 1px
+  width: 100%
+  display: inline-block
+  background-color: $gray
+
+section
+  display: inline-block
+  width: calc(100% - 4rem)
+  padding: 2rem
+
+@media (min-width: 768px)
+  section
+    width: 750px
+    padding:
+      left: calc( (100% - 750px) / 2 )
+      right: calc( (100% - 750px) / 2 )
+
+@media (min-width: 992px)
+  section
+    width: 970px
+    padding:
+      left: calc( (100% - 970px) / 2 )
+      right: calc( (100% - 970px) / 2 )
+
+@media (min-width: 1200px)
+  section
+    width: 1170px
+    padding:
+      left: calc( (100% - 1170px) / 2 )
+      right: calc( (100% - 1170px) / 2 )

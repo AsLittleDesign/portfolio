@@ -1,3 +1,89 @@
+work = [
+  id: "recharge"
+  title: "Recharge App Marketing Page"
+  thumbnailPath: "<%= image_url 'thumbnails/recharge.jpg' %>"
+  imagePath: "<%= image_url 'work/recharge.jpg' %>"
+  color: "#d3d1ca"
+,
+  id: "jobs"
+  title: "Steve Jobs Portrait"
+  thumbnailPath: "<%= image_url 'thumbnails/jobs.jpg' %>"
+  imagePath: "<%= image_url 'work/jobs.jpg' %>"
+  color: "#a8a8aa"
+,
+  id: "faraway"
+  title: "Far Away"
+  thumbnailPath: "<%= image_url 'thumbnails/faraway.jpg' %>"
+  imagePath: "<%= image_url 'work/faraway.jpg' %>"
+  color: "#c2a071"
+,
+  id: "yoda"
+  title: "When nine hundred years old you reach, look as good you will not."
+  thumbnailPath: "<%= image_url 'thumbnails/yoda.jpg' %>"
+  imagePath: "<%= image_url 'work/yoda.jpg' %>"
+  color: "#e6e6e6"
+,
+  id: "watch"
+  title: "Moto 360 Watch Face"
+  thumbnailPath: "<%= image_url 'thumbnails/watch.png' %>"
+  imagePath: "<%= image_url 'work/watch.gif' %>"
+  color: "#373736"
+,
+  id: "bee"
+  title: "Work"
+  thumbnailPath: "<%= image_url 'thumbnails/bee.jpg' %>"
+  imagePath: "<%= image_url 'work/bee.jpg' %>"
+  color: "#aeae97"
+,
+  id: "cliff"
+  title: "El Capitan"
+  thumbnailPath: "<%= image_url 'thumbnails/cliff.jpg' %>"
+  imagePath: "<%= image_url 'work/cliff.jpg' %>"
+  color: "#868686"
+,
+  id: "dragonfly"
+  title: "Emerald Insect"
+  thumbnailPath: "<%= image_url 'thumbnails/dragonfly.jpg' %>"
+  imagePath: "<%= image_url 'work/dragonfly.jpg' %>"
+  color: "#89884a"
+,
+  id: "eye"
+  title: "Window to the Soul"
+  thumbnailPath: "<%= image_url 'thumbnails/eye.jpg' %>"
+  imagePath: "<%= image_url 'work/eye.jpg' %>"
+  color: "#68331f"
+,
+  id: "incense"
+  title: "Smoke (no mirrors)"
+  thumbnailPath: "<%= image_url 'thumbnails/incense.jpg' %>"
+  imagePath: "<%= image_url 'work/incense.jpg' %>"
+  color: "#333333"
+,
+  id: "megan"
+  title: "Megan"
+  thumbnailPath: "<%= image_url 'thumbnails/megan.jpg' %>"
+  imagePath: "<%= image_url 'work/megan.jpg' %>"
+  color: "#d8d8d8"
+,
+  id: "tree"
+  title: "Solitude"
+  thumbnailPath: "<%= image_url 'thumbnails/tree.jpg' %>"
+  imagePath: "<%= image_url 'work/tree.jpg' %>"
+  color: "#747474"
+,
+  id: "alarm"
+  title: "Smart Alarm App Concept"
+  thumbnailPath: "<%= image_url 'thumbnails/alarm.jpg' %>"
+  imagePath: "<%= image_url 'work/alarm.jpg' %>"
+  color: "#8d8c89"
+,
+  id: "fistbump"
+  title: "Fist Bump App Concept"
+  thumbnailPath: "<%= image_url 'thumbnails/fistbump.jpg' %>"
+  imagePath: "<%= image_url 'work/fistbump.jpg' %>"
+  color: "#63b5e5"
+]
+
 # Returns a random numbers between the
 # two numbers passed to the function
 # NOTE: Numbers passed should be between 0 and 100
@@ -7,7 +93,6 @@ randomNumber = (min, max) ->
   
   if (number < max) && (number > min)
     return number
-    console.log number
   else
     randomNumber(min, max)
 
@@ -32,7 +117,7 @@ collide = (node) ->
         quad.point.x += x
         quad.point.y += y
 
-    return x1 > nx2 || x2 < nx1 || y1 > ny2 || y2 < ny1
+    x1 > nx2 || x2 < nx1 || y1 > ny2 || y2 < ny1
 
 # Returns a function, that, as long as it continues to be invoked, will not
 # be triggered. The function will be called after it stops being called for
@@ -53,10 +138,70 @@ debounce = (func, wait, immediate) ->
     if immediate && !timeout
       func.apply(context, args)
 
-createPatterns = (nodes, svg) ->
-  defs = svg.append "defs"
+viewItem = (d) ->
+  d3.selectAll('.node')
+    .transition()
+      .duration 200
+      .ease "linear"
+      .attr "r", 0
+
+  textColor = 
+    if tinycolor.isReadable d.color, tinycolor(d.color).lighten(40)
+      tinycolor(d.color).lighten(40)
+
+    else if tinycolor.isReadable d.color, tinycolor(d.color).darken(50)
+      tinycolor(d.color).darken(40)
+
+    else
+      "rgba(255, 255, 255, 0.7)"
+
+  content = "
+    <div class='view-item--image-background' style='background-image: url(#{ d.imagePath })'></div>
+      <div class='view-item--content container centered'>
+        <img src='#{ d.imagePath }' class='view-item--image' />
+        <h1>#{ d.title }</h1>
+        <p>#{ d.description || '' }</p>
+      </div>
+      <span class='view-item--back' js-item-back>Back</span>"
+
+  $("[js-navigation]").attr "s-transparent", true
+  $("[js-view-item]")
+    .css
+      "pointer-events"   : "initial"
+      "background-color" : d.color
+      "color": textColor
+    .html content
   
-  for node in nodes
+  setTimeout ->
+    $("[js-view-item]").css "opacity", 1
+  , 250
+
+  $("[js-item-back]").click ->
+    $("[js-navigation]").removeAttr "s-transparent"
+    $("[js-view-item]")
+      .css "pointer-events", "none"
+      .css "opacity", 0
+
+    d3.selectAll(".node")
+      .attr "r", (d) -> d.r
+
+renderBubbles = ->
+  # Returns the window dimensions as an integer
+  height = $(window).height()
+  width = $(window).width()
+
+  # Create an SVG
+  svg = d3.select("[js-svg-append]").append "svg"
+    .attr
+      "version"   : "1.1"
+      "xmlns"     : "http://www.w3.org/2000/svg"
+      "xml:space" : "preserve"
+      "width"     : "100%"
+      "height"    : "100%"
+
+  # Define patterns for image backgrounds
+  defs = svg.append "defs"
+  for node in work
     defs.append "pattern"
       .attr
         "patternUnits" : "objectBoundingBox"
@@ -72,172 +217,14 @@ createPatterns = (nodes, svg) ->
           "y"          : 0
           "width"      : 1
           "height"     : 1
-          "preserveAspectRatio" :"none"
+          "preserveAspectRatio" : "none"
 
-getTextColor = (color) ->
-  if tinycolor.isReadable color, tinycolor(color).lighten(40)
-    tinycolor(color).lighten(40)
-
-  else if tinycolor.isReadable color, tinycolor(color).darken(50)
-    tinycolor(color).darken(40)
-
-  else
-    "rgba(255, 255, 255, 0.7)"
-
-viewItem = (data) ->
-  textColor = getTextColor data.color
-
-  content = "
-    <div class='view-item--image-background' style='background-image: url(#{ data.imagePath })'></div>
-      <div class='view-item--content container centered'>
-        <img src='#{ data.imagePath }' class='view-item--image' />
-        <h1>#{ data.title }</h1>
-        <p>#{ data.description || '' }</p>
-      </div>
-      <span class='view-item--back' js-item-back>Back</span>"
-
-  $("[js-navigation]").attr "s-transparent", true
-  $("[js-view-item]")
-    .css
-      "pointer-events"   : "initial"
-      "background-color" : data.color
-      "color": textColor
-    .html content
-  
-  setTimeout ->
-    $("[js-view-item]")
-      .css "opacity", 1
-  , 250
-
-  $("[js-item-back]").click ->
-    $("[js-navigation]").removeAttr "s-transparent"
-    $("[js-view-item]")
-      .css "pointer-events", "none"
-      .css "opacity", 0
-
-    d3.selectAll(".node")
-      .attr "r", (d) ->
-        d.r
-
-renderBubbles = ->
-  work = [
-      id: "recharge"
-      title: "Recharge App Marketing Page"
-      thumbnailPath: "<%= image_url 'thumbnails/recharge.jpg' %>"
-      imagePath: "<%= image_url 'work/recharge.jpg' %>"
-      color: "#d3d1ca"
-    ,
-      id: "jobs"
-      title: "Steve Jobs Portrait"
-      thumbnailPath: "<%= image_url 'thumbnails/jobs.jpg' %>"
-      imagePath: "<%= image_url 'work/jobs.jpg' %>"
-      color: "#a8a8aa"
-    ,
-      id: "faraway"
-      title: "Far Away"
-      thumbnailPath: "<%= image_url 'thumbnails/faraway.jpg' %>"
-      imagePath: "<%= image_url 'work/faraway.jpg' %>"
-      color: "#c2a071"
-    ,
-      id: "yoda"
-      title: "When nine hundred years old you reach, look as good you will not."
-      thumbnailPath: "<%= image_url 'thumbnails/yoda.jpg' %>"
-      imagePath: "<%= image_url 'work/yoda.jpg' %>"
-      color: "#e6e6e6"
-    ,
-      id: "watch"
-      title: "Moto 360 Watch Face"
-      thumbnailPath: "<%= image_url 'thumbnails/watch.png' %>"
-      imagePath: "<%= image_url 'work/watch.gif' %>"
-      color: "#373736"
-    ,
-      id: "bee"
-      title: "Work"
-      thumbnailPath: "<%= image_url 'thumbnails/bee.jpg' %>"
-      imagePath: "<%= image_url 'work/bee.jpg' %>"
-      color: "#aeae97"
-    ,
-      id: "cliff"
-      title: "El Capitan"
-      thumbnailPath: "<%= image_url 'thumbnails/cliff.jpg' %>"
-      imagePath: "<%= image_url 'work/cliff.jpg' %>"
-      color: "#868686"
-    ,
-      id: "dragonfly"
-      title: "Emerald Insect"
-      thumbnailPath: "<%= image_url 'thumbnails/dragonfly.jpg' %>"
-      imagePath: "<%= image_url 'work/dragonfly.jpg' %>"
-      color: "#89884a"
-    ,
-      id: "emily"
-      title: "Emily"
-      thumbnailPath: "<%= image_url 'thumbnails/emily.jpg' %>"
-      imagePath: "<%= image_url 'work/emily.jpg' %>"
-      color: "#4d341a"
-    ,
-      id: "eye"
-      title: "Window to the Soul"
-      thumbnailPath: "<%= image_url 'thumbnails/eye.jpg' %>"
-      imagePath: "<%= image_url 'work/eye.jpg' %>"
-      color: "#68331f"
-    ,
-      id: "incense"
-      title: "Smoke (no mirrors)"
-      thumbnailPath: "<%= image_url 'thumbnails/incense.jpg' %>"
-      imagePath: "<%= image_url 'work/incense.jpg' %>"
-      color: "#333333"
-    ,
-      id: "megan"
-      title: "Megan"
-      thumbnailPath: "<%= image_url 'thumbnails/megan.jpg' %>"
-      imagePath: "<%= image_url 'work/megan.jpg' %>"
-      color: "#d8d8d8"
-    ,
-      id: "snuff"
-      title: "Snuff"
-      thumbnailPath: "<%= image_url 'thumbnails/snuff.jpg' %>"
-      imagePath: "<%= image_url 'work/snuff.jpg' %>"
-      color: "#cccbc0"
-    ,
-      id: "tree"
-      title: "Solitude"
-      thumbnailPath: "<%= image_url 'thumbnails/tree.jpg' %>"
-      imagePath: "<%= image_url 'work/tree.jpg' %>"
-      color: "#747474"
-    ,
-      id: "alarm"
-      title: "Smart Alarm App Concept"
-      thumbnailPath: "<%= image_url 'thumbnails/alarm.jpg' %>"
-      imagePath: "<%= image_url 'work/alarm.jpg' %>"
-      color: "#8d8c89"
-    ,
-      id: "fistbump"
-      title: "Fist Bump App Concept"
-      thumbnailPath: "<%= image_url 'thumbnails/fistbump.jpg' %>"
-      imagePath: "<%= image_url 'work/fistbump.jpg' %>"
-      color: "#63b5e5"
-    ]
-
-  # Returns the window dimensions as an integer
-  height = $(window).height()
-  width = $(window).width()
-
-  svg = d3.select("[js-svg-append]").append "svg"
-    .attr
-      "version"   : "1.1"
-      "xmlns"     : "http://www.w3.org/2000/svg"
-      "xml:space" : "preserve"
-      "width"     : "100%"
-      "height"    : "100%"
-
+  # Define a radius for each piece of work
   work.forEach (d) ->
     radius = randomNumber 50, 80
-    d.r = radius
-    d.ro = radius
+    d.r = d.ro = radius
 
-    d
-
-  createPatterns work, svg
+    return d
 
   force = d3.layout.force()
     .nodes work
@@ -246,96 +233,25 @@ renderBubbles = ->
     .gravity 0.02
     .theta 0.8
     .alpha 0.1
-    .start()
 
   node = svg.selectAll '.node'
     .data work
     .enter().append 'circle'
-      .attr 'class', 'node'
-      .attr "r", (d) ->
-        d.r
-      .attr "fill", (d) ->
-        "url(##{ d.id })"
+      .attr
+        "class" : "node"
+        "r"     : (d) -> d.r
+        "fill"  : (d) -> "url(##{ d.id })"
 
       .on "mouseover", (d) ->
         d.r = d.r * 1.2
-        d3.select(this)
-          .transition()
-            .attr "r", d.r
-            .duration 1000
-            .ease "elastic"
+        animateRadius this, d
 
       .on "mouseout", (d) ->
         d.r = d.ro
-        d3.select(this)
-          .transition()
-            .attr "r", d.r
-            .duration 1000
-            .ease "elastic"
+        animateRadius this, d
 
       .on "click", (d) ->
-        viewItem(d)
-
-        d3.selectAll('.node')
-          .transition()
-            .duration 200
-            .ease "linear"
-            .attr "r", 0
-  
-
-  force.on 'tick', ->    
-    q = d3.geom.quadtree(work)
-    i = 0
-    n = work.length
-
-    while ++i < n
-      q.visit collide(work[i])
-
-    node.attr 'cx', (d) ->
-      d.x
-
-    node.attr 'cy', (d) ->
-      d.y
-
-    nodeDuplicate.attr 'cx', (d) ->
-      d.x
-
-    nodeDuplicate.attr 'cy', (d) ->
-      d.y
-
-  $(window).resize ->
-    height = $(window).height()
-    width = $(window).width()
-
-    force.size [width, height]
-    debounce force.start(), 100
-
-  $("[js-svg-append]")
-    .on "mousemove", ->
-      width = event.clientX * 2
-      height = event.clientY * 2
-
-      force
-        .size [width, height]
-        .gravity 0.005
-
-      debounce force.start(), 200
-    
-    .on "swipeleft", ->
-      width = width - 600
-
-      force
-        .size [width, height]
-        .gravity 0.005
-        .start()
-
-    .on "swiperight", ->
-      width = width + 600
-
-      force
-        .size [width, height]
-        .gravity 0.005
-        .start()
+        viewItem d
 
   svgDuplicate = d3.select("[js-duplicate-svg]").append "svg"
     .attr
@@ -346,77 +262,67 @@ renderBubbles = ->
       "height"    : "100%"
       "style"     : "transformX(-10px)"
 
-  forceDuplicate = d3.layout.force()
-    .nodes work
-    .size [width, height]
-    .friction 0.9
-    .gravity 0.02
-    .theta 0.8
-    .alpha 0.1
-    .start()
-
   nodeDuplicate = svgDuplicate.selectAll '.node'
     .data work
     .enter().append 'circle'
-      .attr 'class', 'node'
-      .attr "r", (d) ->
-        d.r
-      .attr "fill", (d) ->
-        "url(##{ d.id })"
+      .attr
+        "class" : "node"
+        "r"     : (d) -> d.r
+        "fill"  : (d) -> "url(##{ d.id })"
+
+  animateRadius = (node, d) ->
+    d3.select node
+      .transition()
+        .attr "r", d.r
+        .duration 1000
+        .ease "elastic"
+
+    d3.select nodeDuplicate[0][d.index]
+      .transition()
+        .attr "r", d.r
+        .duration 1000
+        .ease "elastic"
   
-  forceDuplicate.on 'tick', ->    
+  force.on 'tick', ->
     q = d3.geom.quadtree(work)
     i = 0
     n = work.length
 
     while ++i < n
-      q.visit collide(work[i])
-
-    nodeDuplicate.attr 'cx', (d) ->
-      d.x
-
-    nodeDuplicate.attr 'cy', (d) ->
-      d.y
-
-    node.attr 'cx', (d) ->
-      d.x
-
-    node.attr 'cy', (d) ->
-      d.y
+      q.visit collide work[i]
+    
+    d3.selectAll ".node"
+      .attr
+        "cx" : (d) -> d.x
+        "cy" : (d) -> d.y
 
   $(window).resize ->
     height = $(window).height()
     width = $(window).width()
 
-    forceDuplicate.size [width, height]
-    debounce forceDuplicate.start(), 100
+    force.size [width, height]
 
-  $("[js-duplicate-svg]")
+  $("[js-svg-append]")
     .on "mousemove", ->
       width = event.clientX * 2
       height = event.clientY * 2
-
-      forceDuplicate
-        .size [width, height]
-        .gravity 0.005
-
-      debounce forceDuplicate.start(), 200
+      moveGravity width, height
     
     .on "swipeleft", ->
-      width = width - 600
-
-      forceDuplicate
-        .size [width, height]
-        .gravity 0.005
-        .start()
+      width = width - 500
+      moveGravity width, height
 
     .on "swiperight", ->
-      width = width + 600
+      width = width + 500
+      moveGravity width, height
 
-      forceDuplicate
-        .size [width, height]
-        .gravity 0.005
-        .start()
+  moveGravity = (width, height) ->
+    force
+      .size [width, height]
+      .gravity 0.005
+      .resume()
+
+  force.start()
 
 $ ->
   renderBubbles()
