@@ -6,7 +6,7 @@ gem 'rails', '4.2.1'
 # Use Foreman to start the environment
 gem 'foreman'
 
-# Use Puma as our web server
+# Use Unicorn as our web server
 gem 'unicorn'
 
 # Use sqlite3 as the database for Active Record
@@ -23,9 +23,6 @@ gem 'sass-rails'
 
 # Fix imported mixins
 gem 'sprockets-sass'
-
-# Use compass for cross-browser mixins
-gem "compass-rails"
 
 # Use Susy with compass-rails
 gem 'susy'

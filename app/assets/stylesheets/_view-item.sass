@@ -1,5 +1,6 @@
 .view-item
-  +transition(opacity 0.5s ease-in-out)
+  transition: opacity 0.5s ease-in-out
+  -webkit-transition: opacity 0.5s ease-in-out
   will-change: opacity
   position: fixed
   top: 0
@@ -13,7 +14,11 @@
     left: -10%
     right: -10%
     height: 50%
-    +filter( blur(100px) )
+    filter: blur(100px) 
+    -webkit-filter: blur(100px)
+    -moz-filter: blur(100px) 
+    -o-filter: blur(100px)
+    -ms-filter: blur(100px) 
     background:
       position: center
       size: cover
@@ -35,7 +40,8 @@
       bottom: 25px
 
   &--back
-    +transition(opacity 0.1s ease-in-out)
+    transition: opacity 0.1s ease-in-out
+    -webkit-transition: opacity 0.1s ease-in-out
     position: absolute
     top: 1em
     left: 0

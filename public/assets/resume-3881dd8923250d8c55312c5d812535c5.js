@@ -1,0 +1,1 @@
+(function(){$(function(){return $("[js-toggle-resume]").click(function(){var t;return t=$(this).attr("js-toggle-resume"),$("[js-toggle-resume]").removeAttr("s-active"),$(this).attr("s-active",!0),$("[js-resume]").removeAttr("s-active"),$("[js-resume='"+t+"']").attr("s-active",!0)})})}).call(this);
