@@ -49,7 +49,7 @@ input:
   templates: "app/assets/fonts/templates"
 
 output:
-  fonts: "app/assets/fonts"
+  fonts: "public/assets"
   css: "app/assets/fonts"
 
 

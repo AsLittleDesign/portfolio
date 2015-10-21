@@ -1,13 +1,13 @@
 {
   "checksum": {
-    "previous": "622652c2a414688b4af1c2509766179cc3052aed5896e0f1b3e6354e071e3e5d",
-    "current": "622652c2a414688b4af1c2509766179cc3052aed5896e0f1b3e6354e071e3e5d"
+    "previous": "17b5cf9af02b03d59ac65ffd9d10a45f6f57269ed911237d699787112953cc67",
+    "current": "17b5cf9af02b03d59ac65ffd9d10a45f6f57269ed911237d699787112953cc67"
   },
   "fonts": [
-    "app/assets/fonts/icons.ttf",
-    "app/assets/fonts/icons.svg",
-    "app/assets/fonts/icons.woff",
-    "app/assets/fonts/icons.eot"
+    "public/assets/icons.ttf",
+    "public/assets/icons.svg",
+    "public/assets/icons.woff",
+    "public/assets/icons.eot"
   ],
   "glyphs": {
     "adobe": {
@@ -65,8 +65,8 @@
     "no_hash": true,
     "output": {
       "css": "app/assets/fonts",
-      "fonts": "app/assets/fonts",
-      "preview": "app/assets/fonts"
+      "fonts": "public/assets",
+      "preview": "public/assets"
     },
     "preprocessor_path": "",
     "quiet": false,
