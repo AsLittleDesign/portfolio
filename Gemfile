@@ -7,7 +7,7 @@ gem 'rails', '4.2.1'
 gem 'foreman'
 
 # Use Puma as our web server
-gem 'puma'
+gem 'unicorn'
 
 # Use sqlite3 as the database for Active Record
 gem 'sqlite3'
@@ -66,8 +66,5 @@ group :development, :test do
 
   # Use Pry remote because Pry is broken with foreman
   gem 'pry-remote'
-
-  # Use FontCustom for compiling SVG assets into a custom icon font
-  gem 'fontcustom'
 end
 
