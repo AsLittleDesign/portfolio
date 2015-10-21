@@ -325,4 +325,5 @@ renderBubbles = ->
   force.start()
 
 $ ->
-  renderBubbles()
+  if window.location.pathname == "/"
+    renderBubbles()
