@@ -1,13 +1,13 @@
 {
   "checksum": {
-    "previous": "e3fa2f01021546a69603d829cedfca6fd4c7acb62d7d5d067555f982fa9cbe49",
-    "current": "e3fa2f01021546a69603d829cedfca6fd4c7acb62d7d5d067555f982fa9cbe49"
+    "previous": "622652c2a414688b4af1c2509766179cc3052aed5896e0f1b3e6354e071e3e5d",
+    "current": "622652c2a414688b4af1c2509766179cc3052aed5896e0f1b3e6354e071e3e5d"
   },
   "fonts": [
-    "app/assets/fonts/icons_e3fa2f01021546a69603d829cedfca6f.ttf",
-    "app/assets/fonts/icons_e3fa2f01021546a69603d829cedfca6f.svg",
-    "app/assets/fonts/icons_e3fa2f01021546a69603d829cedfca6f.woff",
-    "app/assets/fonts/icons_e3fa2f01021546a69603d829cedfca6f.eot"
+    "app/assets/fonts/icons.ttf",
+    "app/assets/fonts/icons.svg",
+    "app/assets/fonts/icons.woff",
+    "app/assets/fonts/icons.eot"
   ],
   "glyphs": {
     "adobe": {
@@ -62,7 +62,7 @@
       "templates": "app/assets/fonts/templates",
       "vectors": "app/assets/fonts/icons"
     },
-    "no_hash": false,
+    "no_hash": true,
     "output": {
       "css": "app/assets/fonts",
       "fonts": "app/assets/fonts",
